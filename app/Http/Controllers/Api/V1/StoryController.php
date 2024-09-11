@@ -14,7 +14,7 @@ class StoryController extends ApiController
     use ApiResponses;
     public function __construct(protected StoryRepositoryInterface $storyRepository)
     {
-        $this->middleware('auth:sanctum')->only('create', 'update', 'edit', 'destroy');
+        $this->middleware('auth:sanctum')->only('store', 'update', 'edit', 'destroy');
     }
         
     public function store(CreateStoryRequest $data)

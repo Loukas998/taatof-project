@@ -47,6 +47,6 @@ class StoryRepository implements StoryRepositoryInterface
     
     public function all(StoryFilter $filters)
     {
-        return StoryResource::collection(Story::filter($filters)->all());
+        return StoryResource::collection(Story::filter($filters)->get());
     }
 }
