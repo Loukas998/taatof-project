@@ -37,8 +37,8 @@ class StoryController extends ApiController
 
     public function show($id)
     {
+        $hasAuthHeader = false;
         if(request()->header('Authorization')) $hasAuthHeader = true;
-        else $hasAuthHeader = false;
         
         $story = $this->storyRepository->find($id, $hasAuthHeader);
         return $this->ok('Retrieved successfully', $story); 

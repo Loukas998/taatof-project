@@ -36,6 +36,7 @@ class StoryRepository implements StoryRepositoryInterface
     public function find($id, $hasAuthHeader)
     {
         $story = Story::find($id);
+
         if(!$hasAuthHeader){
             $story->clicks++;
             $story->save();
