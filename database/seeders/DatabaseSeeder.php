@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
             StateSeeder::class
         ]);
 
-        $stories = \App\Models\Story::factory(50)->create();
+        // $stories = \App\Models\Story::factory(50)->create();
 
-        $tags = \App\Models\Tag::all();
+        // $tags = \App\Models\Tag::all();
 
-        $stories->each(function($story) use ($tags) {
-            $story->tags()->attach($tags->random(rand(1, 3))->pluck('id')->toArray());
-        });
+        // $stories->each(function($story) use ($tags) {
+        //     $story->tags()->attach($tags->random(rand(1, 3))->pluck('id')->toArray());
+        // });
     }
 }
