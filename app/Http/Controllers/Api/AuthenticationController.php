@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
+use App\Http\Requests\Api\UpdateUserRequest;
 use App\Traits\ApiResponses;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
@@ -30,8 +31,23 @@ class AuthenticationController extends Controller
         );
     }
 
-    public function logout(Request $request){
-        Auth::logout();
+    public function logout(){
+        request()->user()->tokens()->delete();
+
+        return $this->noContent();
+    }
+
+    public function update_user(UpdateUserRequest $request){
+        $user = User::find(request()->user()->id);
+
+        if(!$user){
+            return $this->error('User doesn\'t exist', 401);
+        }
+        $user->tokens()->delete();        
+        $newPassword = Hash::make($request->password);
+        $user->password = $newPassword;
+        $user->username = $request->username;
+        $user->save();
 
         return $this->noContent();
     }
