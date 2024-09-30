@@ -39,10 +39,14 @@ class AuthenticationController extends Controller
 
     public function update_user(UpdateUserRequest $request){
         $user = User::find(request()->user()->id);
-
         if(!$user){
             return $this->error('User doesn\'t exist', 401);
         }
+
+        if(User::firstWhere('username', $request->username)){
+           return $this->error('There is a user with the same user name', 400); 
+        }
+
         $user->tokens()->delete();        
         $newPassword = Hash::make($request->password);
         $user->password = $newPassword;
