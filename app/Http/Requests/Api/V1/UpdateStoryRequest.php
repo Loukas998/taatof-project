@@ -27,7 +27,9 @@ class UpdateStoryRequest extends FormRequest
             'body' => 'string',
             'teller' => 'string',
             'keywords' => 'string',
-            'tags' => 'nullable'
+            'tags' => 'nullable',
+            'written_at' => 'date',
+            'visible' => 'boolean'
         ];
     }
 }

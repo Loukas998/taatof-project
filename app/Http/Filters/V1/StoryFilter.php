@@ -7,7 +7,7 @@ class StoryFilter extends QueryFilter{
         'clicks',
         'teller',
         'title',
-        'createdAt' => 'created_at'
+        'writtenAt' => 'written_at'
     ];
 
 
@@ -41,19 +41,23 @@ class StoryFilter extends QueryFilter{
         return $this->builder->where('teller', 'like', $likeStr);
     }
 
-    public function createdAt($value){
+    public function writtenAt($value){
         $dates = explode(',', $value);
 
         if(count($dates)){
-            return $this->builder->whereBetween('created_at', $dates);
+            return $this->builder->whereBetween('written_at', $dates);
         }
 
-        return $this->builder->where('created_at', $dates);
+        return $this->builder->where('written_at', $dates);
     }
 
     public function tag($value){
         return $this->builder->whereHas('tags', function($query) use ($value) {
             $query->where('tags.id', $value);
         });
+    }
+
+    public function visible($value){
+        return $this->builder->where('visible', $value);
     }
 }

@@ -21,7 +21,8 @@ class StoryRepository implements StoryRepositoryInterface
     {
         $story = Story::find($id);
         $story->update($data);
-        if($data['tags'])
+        
+        if(array_key_exists('tags', $data))
             $story->tags()->sync($data['tags']);
     }
 
@@ -37,7 +38,7 @@ class StoryRepository implements StoryRepositoryInterface
     {
         $story = Story::find($id);
 
-        if(!$hasAuthHeader){
+        if(!$hasAuthHeader && $story->visible == true){
             $story->clicks++;
             $story->save();
         }

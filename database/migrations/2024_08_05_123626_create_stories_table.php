@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('teller');
             $table->string('keywords')->nullable(true);
             $table->integer('clicks')->default(0);
+            $table->date('written_at');
+            $table->boolean('visible');
             $table->timestamps();
 
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');

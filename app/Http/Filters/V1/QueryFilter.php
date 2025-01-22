@@ -23,11 +23,11 @@ abstract class QueryFilter{
         }
 
         return $this->builder;
-    }    
+    }// this is called when there is something like this in the url: filter[key]=value&filter[key2]=value2
+     // then each key($value) will be called from the class that inherits QueryFilter
 
     public function apply(Builder $builder){
         $this->builder = $builder;
-
         foreach($this->request->all() as $key => $value){
             if(method_exists($this, $key)){
                 $this->$key($value);
@@ -35,11 +35,13 @@ abstract class QueryFilter{
         }
 
         return $builder;
-    }
+    }// this will be called when the url contains: key=value&key2=value2
+     // then each key(value) first will check if the key in this class or in some extension
+     // and call the right key method
 
     protected function sort($value){
         $sortAttributes = explode(',', $value);
-
+        //dd($sortAttributes);
         $direction = 'asc';
 
         foreach($sortAttributes as $sortAttribute){

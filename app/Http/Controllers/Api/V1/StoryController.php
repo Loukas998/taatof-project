@@ -14,7 +14,7 @@ class StoryController extends ApiController
     use ApiResponses;
     public function __construct(protected StoryRepositoryInterface $storyRepository)
     {
-        $this->middleware('auth:sanctum')->only('store', 'update', 'edit', 'destroy');
+        $this->middleware('auth:sanctum')->only('store', 'update', 'edit', 'destroy', 'visible');
     }
         
     public function store(CreateStoryRequest $data)
@@ -45,6 +45,18 @@ class StoryController extends ApiController
     }
 
     public function index(StoryFilter $filters)
+    {
+        $query_parameters = request()->all();
+        if(array_key_exists('visible', $query_parameters) && $query_parameters['visible'] == 0 && !request()->header('Authorization')){
+            return response()->json([
+                'message' => 'Unauthorized to use this filter'
+            ], 401);
+        }
+        $stories = $this->storyRepository->all($filters);
+        return $this->ok('Retrieved successfully', $stories); 
+    }
+
+    public function visible(StoryFilter $filters)
     {
         $stories = $this->storyRepository->all($filters);
         return $this->ok('Retrieved successfully', $stories); 

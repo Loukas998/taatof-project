@@ -22,7 +22,8 @@ class StoryResource extends JsonResource
                 'body' => $this->body,
                 'teller' => $this->teller,
                 'clicks' => $this->clicks,
-                'created_at' => $this->created_at
+                'written_at' => $this->written_at,
+                'visible' => $this->visible
             ],
             'link' => $this->when(
                     $request->routeIs('stories'),
