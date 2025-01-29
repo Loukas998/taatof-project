@@ -1,0 +1,875 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/login:
+    post:
+      summary: ''
+      operationId: postApiLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: ''
+                  example: qui
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: '#3We5*Uq,1'
+                  nullable: false
+              required:
+                - username
+                - password
+      security: []
+  /api/logout:
+    post:
+      summary: ''
+      operationId: postApiLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/update_user:
+    post:
+      summary: ''
+      operationId: postApiUpdate_user
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: ''
+                  example: qui
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: sv=znY@RN/
+                  nullable: false
+              required:
+                - username
+                - password
+      security: []
+  /api/v1/stories:
+    get:
+      summary: ''
+      operationId: getApiV1Stories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Retrieved successfully'
+                  data: []
+                properties:
+                  message:
+                    type: string
+                    example: 'Retrieved successfully'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1Stories
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                state_id:
+                  type: integer
+                  description: ''
+                  example: 6
+                  nullable: false
+                title:
+                  type: string
+                  description: ''
+                  example: eos
+                  nullable: false
+                body:
+                  type: string
+                  description: ''
+                  example: distinctio
+                  nullable: false
+                teller:
+                  type: string
+                  description: ''
+                  example: exercitationem
+                  nullable: false
+                keywords:
+                  type: string
+                  description: ''
+                  example: non
+                  nullable: true
+                tags:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: true
+                written_at:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2025-01-29T05:34:01'
+                  nullable: false
+                visible:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+      security: []
+  '/api/v1/stories/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1StoriesId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiV1StoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                state_id:
+                  type: integer
+                  description: ''
+                  example: 6
+                  nullable: false
+                title:
+                  type: string
+                  description: ''
+                  example: ipsa
+                  nullable: false
+                body:
+                  type: string
+                  description: ''
+                  example: necessitatibus
+                  nullable: false
+                teller:
+                  type: string
+                  description: ''
+                  example: nostrum
+                  nullable: false
+                keywords:
+                  type: string
+                  description: ''
+                  example: a
+                  nullable: false
+                tags:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: true
+                written_at:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2025-01-29T05:34:01'
+                  nullable: false
+                visible:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: false
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1StoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the story.'
+        example: 20
+        required: true
+        schema:
+          type: integer
+  /api/v1/states:
+    get:
+      summary: ''
+      operationId: getApiV1States
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      type: state
+                      id: 1
+                      attributes:
+                        name: دمشق
+                    -
+                      type: state
+                      id: 2
+                      attributes:
+                        name: حمص
+                    -
+                      type: state
+                      id: 3
+                      attributes:
+                        name: طرطوس
+                    -
+                      type: state
+                      id: 4
+                      attributes:
+                        name: اللاذقية
+                    -
+                      type: state
+                      id: 5
+                      attributes:
+                        name: حلب
+                    -
+                      type: state
+                      id: 6
+                      attributes:
+                        name: 'دير الزور'
+                    -
+                      type: state
+                      id: 7
+                      attributes:
+                        name: 'ريف دمشق'
+                    -
+                      type: state
+                      id: 8
+                      attributes:
+                        name: القنيطرة
+                    -
+                      type: state
+                      id: 9
+                      attributes:
+                        name: إدلب
+                    -
+                      type: state
+                      id: 10
+                      attributes:
+                        name: السويداء
+                    -
+                      type: state
+                      id: 11
+                      attributes:
+                        name: درعا
+                    -
+                      type: state
+                      id: 12
+                      attributes:
+                        name: الرقة
+                    -
+                      type: state
+                      id: 13
+                      attributes:
+                        name: الحسكة
+                    -
+                      type: state
+                      id: 14
+                      attributes:
+                        name: حماة
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        type: state
+                        id: 1
+                        attributes:
+                          name: دمشق
+                      -
+                        type: state
+                        id: 2
+                        attributes:
+                          name: حمص
+                      -
+                        type: state
+                        id: 3
+                        attributes:
+                          name: طرطوس
+                      -
+                        type: state
+                        id: 4
+                        attributes:
+                          name: اللاذقية
+                      -
+                        type: state
+                        id: 5
+                        attributes:
+                          name: حلب
+                      -
+                        type: state
+                        id: 6
+                        attributes:
+                          name: 'دير الزور'
+                      -
+                        type: state
+                        id: 7
+                        attributes:
+                          name: 'ريف دمشق'
+                      -
+                        type: state
+                        id: 8
+                        attributes:
+                          name: القنيطرة
+                      -
+                        type: state
+                        id: 9
+                        attributes:
+                          name: إدلب
+                      -
+                        type: state
+                        id: 10
+                        attributes:
+                          name: السويداء
+                      -
+                        type: state
+                        id: 11
+                        attributes:
+                          name: درعا
+                      -
+                        type: state
+                        id: 12
+                        attributes:
+                          name: الرقة
+                      -
+                        type: state
+                        id: 13
+                        attributes:
+                          name: الحسكة
+                      -
+                        type: state
+                        id: 14
+                        attributes:
+                          name: حماة
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: state
+                        id:
+                          type: integer
+                          example: 1
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: دمشق
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/states/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1StatesId
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    type: state
+                    id: 1
+                    attributes:
+                      name: دمشق
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: state
+                      id:
+                        type: integer
+                        example: 1
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: دمشق
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the state.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/tags:
+    get:
+      summary: ''
+      operationId: getApiV1Tags
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      type: tag
+                      id: 1
+                      attributes:
+                        name: تمكين
+                    -
+                      type: tag
+                      id: 2
+                      attributes:
+                        name: مسامحة
+                    -
+                      type: tag
+                      id: 3
+                      attributes:
+                        name: 'حل مشاكل'
+                    -
+                      type: tag
+                      id: 4
+                      attributes:
+                        name: 'تاريخ وتراث'
+                    -
+                      type: tag
+                      id: 5
+                      attributes:
+                        name: 'بناء الجسور'
+                    -
+                      type: tag
+                      id: 6
+                      attributes:
+                        name: 'سلام داخلي'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        type: tag
+                        id: 1
+                        attributes:
+                          name: تمكين
+                      -
+                        type: tag
+                        id: 2
+                        attributes:
+                          name: مسامحة
+                      -
+                        type: tag
+                        id: 3
+                        attributes:
+                          name: 'حل مشاكل'
+                      -
+                        type: tag
+                        id: 4
+                        attributes:
+                          name: 'تاريخ وتراث'
+                      -
+                        type: tag
+                        id: 5
+                        attributes:
+                          name: 'بناء الجسور'
+                      -
+                        type: tag
+                        id: 6
+                        attributes:
+                          name: 'سلام داخلي'
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: tag
+                        id:
+                          type: integer
+                          example: 1
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: تمكين
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/tags/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1TagsId
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    type: tag
+                    id: 1
+                    attributes:
+                      name: تمكين
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: tag
+                      id:
+                        type: integer
+                        example: 1
+                      attributes:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: تمكين
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the tag.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/states/{state_id}/stories':
+    get:
+      summary: ''
+      operationId: getApiV1StatesState_idStories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'http://localhost/api/v1/states/1/stories?page=1'
+                    last: 'http://localhost/api/v1/states/1/stories?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: null
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/states/1/stories?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost/api/v1/states/1/stories'
+                    per_page: 15
+                    to: null
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost/api/v1/states/1/stories?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost/api/v1/states/1/stories?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: string
+                        example: null
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost/api/v1/states/1/stories?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost/api/v1/states/1/stories'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: string
+                        example: null
+                      total:
+                        type: integer
+                        example: 0
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: state_id
+        description: 'The ID of the state.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/tags/{tag_id}/stories':
+    get:
+      summary: ''
+      operationId: getApiV1TagsTag_idStories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'http://localhost/api/v1/tags/1/stories?page=1'
+                    last: 'http://localhost/api/v1/tags/1/stories?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: null
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/tags/1/stories?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost/api/v1/tags/1/stories'
+                    per_page: 15
+                    to: null
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost/api/v1/tags/1/stories?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost/api/v1/tags/1/stories?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: string
+                        example: null
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost/api/v1/tags/1/stories?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost/api/v1/tags/1/stories'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: string
+                        example: null
+                      total:
+                        type: integer
+                        example: 0
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: tag_id
+        description: 'The ID of the tag.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''

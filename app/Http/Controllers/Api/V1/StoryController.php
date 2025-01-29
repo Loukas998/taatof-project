@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Filters\V1\StoryFilter;
 use App\Repository\Story\StoryRepositoryInterface;
 use App\Traits\ApiResponses;
+use Illuminate\Support\Facades\Log;
 
 class StoryController extends ApiController
 {
@@ -16,7 +17,7 @@ class StoryController extends ApiController
     {
         $this->middleware('auth:sanctum')->only('store', 'update', 'edit', 'destroy', 'visible');
     }
-        
+
     public function store(CreateStoryRequest $data)
     {
         $newStory = $this->storyRepository->create($data->input());
@@ -25,8 +26,8 @@ class StoryController extends ApiController
 
     public function update(UpdateStoryRequest $data, $id)
     {
-       $this->storyRepository->update($data->input(), $id);
-       return $this->noContent();
+        $this->storyRepository->update($data->input(), $id);
+        return $this->noContent();
     }
 
     public function destroy($id)
@@ -38,27 +39,30 @@ class StoryController extends ApiController
     public function show($id)
     {
         $hasAuthHeader = false;
-        if(request()->header('Authorization')) $hasAuthHeader = true;
-        
+        if (request()->header('Authorization')) $hasAuthHeader = true;
+
         $story = $this->storyRepository->find($id, $hasAuthHeader);
-        return $this->ok('Retrieved successfully', $story); 
+        return $this->ok('Retrieved successfully', $story);
     }
 
     public function index(StoryFilter $filters)
     {
         $query_parameters = request()->all();
-        if(array_key_exists('visible', $query_parameters) && $query_parameters['visible'] == 0 && !request()->header('Authorization')){
+        if (array_key_exists('visible', $query_parameters) && $query_parameters['visible'] == 0 && !request()->header('Authorization')) {
             return response()->json([
                 'message' => 'Unauthorized to use this filter'
             ], 401);
         }
-        $stories = $this->storyRepository->all($filters);
-        return $this->ok('Retrieved successfully', $stories); 
+        $hasAuthHeader = false;
+        if (request()->header('Authorization')) $hasAuthHeader = true;
+
+        $stories = $this->storyRepository->all($filters, $hasAuthHeader);
+        return $this->ok('Retrieved successfully', $stories);
     }
 
     public function visible(StoryFilter $filters)
     {
-        $stories = $this->storyRepository->all($filters);
-        return $this->ok('Retrieved successfully', $stories); 
+        $stories = $this->storyRepository->all($filters, true);
+        return $this->ok('Retrieved successfully', $stories);
     }
 }

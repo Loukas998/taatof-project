@@ -22,14 +22,14 @@ class UpdateStoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'state_id' => 'integer',
-            'title' => 'string',
-            'body' => 'string',
-            'teller' => 'string',
-            'keywords' => 'string',
-            'tags' => 'nullable',
-            'written_at' => 'date',
-            'visible' => 'boolean'
+            'state_id' => 'nullable|integer',
+            'title' => 'nullable|string',
+            'body' => 'nullable|string',
+            'teller' => 'nullable|string',
+            'keywords' => 'nullable|string',
+            'tags' => 'nullable|nullable',
+            'written_at' => 'nullable|date',
+            'visible' => 'nullable|boolean'
         ];
     }
 }

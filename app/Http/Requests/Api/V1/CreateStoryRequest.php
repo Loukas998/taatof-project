@@ -22,14 +22,14 @@ class CreateStoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'state_id' => 'integer',
-            'title' => 'string',
-            'body' => 'string',
-            'teller' => 'string',
-            'keywords' => 'string',
+            'state_id' => 'nullable|integer',
+            'title' => 'nullable|string',
+            'body' => 'nullable|string',
+            'teller' => 'nullable|string',
+            'keywords' => 'nullable|string',
             'tags' => 'nullable',
-            'written_at' => 'date',
-            'visible' => 'boolean'
+            'written_at' => 'nullable|date',
+            'visible' => 'nullable|boolean'
         ];
     }
 }

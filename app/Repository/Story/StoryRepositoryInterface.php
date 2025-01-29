@@ -14,5 +14,5 @@ interface StoryRepositoryInterface
 
     public function find($id, $hasAuthHeader);
 
-    public function all(StoryFilter $filters);
+    public function all(StoryFilter $filters, bool $isAuth);
 }

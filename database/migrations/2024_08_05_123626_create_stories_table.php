@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('state_id');
+            $table->unsignedBigInteger('state_id')->nullable();
             $table->string('title');
-            $table->text('body');
-            $table->string('teller');
-            $table->string('keywords')->nullable(true);
+            $table->text('body')->nullable();
+            $table->string('teller')->nullable();
+            $table->string('keywords')->nullable();
             $table->integer('clicks')->default(0);
-            $table->date('written_at');
-            $table->boolean('visible');
+            $table->date('written_at')->nullable();
+            $table->boolean('visible')->default(true);
             $table->timestamps();
 
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
